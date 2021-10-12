@@ -24,7 +24,7 @@ class Controller extends BaseController
 				'title' => $faker->jobTitle(),
 				'author' => $faker->userName(),
 				'image' => null,
-				'description' => $faker->sentence(10)
+				'description' => "<strong>" . $faker->sentence(10) . "</strong>"
 			];
 		}
 
