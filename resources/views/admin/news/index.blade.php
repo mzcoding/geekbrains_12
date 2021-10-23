@@ -12,7 +12,7 @@
     </div>
 
     <div class="table-responsive">
-        @include('inc.message', ['name' => 'Example'])
+        @include('inc.message')
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -27,12 +27,16 @@
             @forelse($newsList as $news)
 
             <tr>
-                <td>{{ $news['id'] }}</td>
-                <td>{{ $news['title'] }}</td>
-                <td>{{ $news['author'] }}</td>
-                <td>{{ now()->format('d-m-Y H:i') }}</td>
+                <td>{{ $news->id }}</td>
+                <td>{{ $news->title }}</td>
+                <td>{{ $news->author }}</td>
                 <td>
-                    <a href="">Ред.</a>&nbsp;|&nbsp; <a href="javascript:;" style="color:red;">Уд.</a>
+                    @if($news->updated_at)
+                        {{ $news->updated_at->format('d-m-Y H:i') }}
+                    @else - @endif
+                </td>
+                <td>
+                    <a href="{{ route('admin.news.edit', ['news' => $news]) }}">Ред.</a>&nbsp;|&nbsp; <a href="javascript:;" style="color:red;">Уд.</a>
                 </td>
             </tr>
             @empty

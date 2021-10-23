@@ -30,6 +30,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
 Route::get('/news', [NewsController::class, 'index'])
 	->name('news.index');
-Route::get('/news/{id}', [NewsController::class, 'show'])
-	->where('id', '\d+')
+Route::get('/news/{news}', [NewsController::class, 'show'])
+	->where('news', '\d+')
 	->name('news.show');
+
+Route::get('collection', function() {
+	$names = ['Ann', 'Bet', 'Luck', 'Lucy', 'Ben', 'Bob', 'Ia', 'Yan'];
+	$collection = collect($names);
+});
