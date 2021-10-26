@@ -23,14 +23,17 @@
                     @endforeach
 
                 </select>
+                @error('category_id') <div><strong style="color:red;">{{ $message }}</strong></div> @enderror
             </div>
             <div class="form-group">
                 <label for="title">Наименование</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ $news->title }}">
+                @error('title') <div><strong style="color:red;">{{ $message }}</strong></div> @enderror
             </div>
             <div class="form-group">
                 <label for="author">Автор</label>
                 <input type="text" class="form-control" name="author" id="author" value="{{ $news->author }}">
+                @error('author') <div><strong style="color:red;">{{ $message }}</strong></div> @enderror
             </div>
             <div class="form-group">
                 <label for="status">Статус</label>
