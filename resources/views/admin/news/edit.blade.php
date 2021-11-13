@@ -11,7 +11,7 @@
 
     <div class="table-responsive">
         @include('inc.message')
-        <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}">
+        <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="form-group">
@@ -36,6 +36,13 @@
                 @error('author') <div><strong style="color:red;">{{ $message }}</strong></div> @enderror
             </div>
             <div class="form-group">
+                <label for="image">Изображение</label>
+                @if($news->image)
+                    <img src="{{ Storage::disk('news')->url($news->image) }}" style="width: 200px;">
+                @endif
+                <input type="file" class="form-control" name="image" id="image">
+            </div>
+            <div class="form-group">
                 <label for="status">Статус</label>
                 <select class="form-control" name="status" id="status">
                     <option @if($news->status === 'DRAFT') selected @endif>DRAFT</option>
@@ -52,3 +59,14 @@
         </form>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+@endpush

@@ -11,7 +11,7 @@ class News extends Model
     use HasFactory;
 
 	protected $fillable = [
-		'category_id', 'title', 'description', 'status', 'author'
+		'category_id', 'title', 'description', 'status', 'author', 'image'
 	];
 
 	public function category(): BelongsTo

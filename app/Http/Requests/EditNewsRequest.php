@@ -28,6 +28,7 @@ class EditNewsRequest extends FormRequest
 			'title' => ['required', 'string', 'min:3', 'max:250'],
 			'author' => ['required', 'string', 'min:2', 'max:250'],
 			'status' => ['required', 'string', 'min:5', 'max:15'],
+			'image'  => ['nullable', 'mimes:jpg,jpeg,png'],
 			'description' => ['sometimes']
 		];
     }

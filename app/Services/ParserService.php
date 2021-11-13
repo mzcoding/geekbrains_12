@@ -19,11 +19,11 @@ class ParserService implements Parser
 	   return $this->url;
    }
 
-   public function start(): array
+   public function start(): void
    {
 	   $xml = \XmlParser::load($this->getUrl());
 
-	   return $xml->parse([
+	   $data = $xml->parse([
 		   'title' => [
 			   'uses' => 'channel.title'
 		   ],
@@ -40,5 +40,8 @@ class ParserService implements Parser
 			   'uses' => 'channel.item[title,link,guid,description,pubDate]'
 		   ]
 	   ]);
+	   $e = explode("/", $this->getUrl());
+	   $fileName = end($e);
+	   \Storage::append( 'news/' . $fileName ,  json_encode($data));
    }
 }
